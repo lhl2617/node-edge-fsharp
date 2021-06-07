@@ -2,15 +2,6 @@ import * as edge from "edge-js";
 import * as path from "path";
 import * as fs from "fs";
 
-// https://nodejs.org/api/process.html#process_process_platform
-const useCoreCLRPlatformMap: Map<NodeJS.Platform, string> = new Map([
-  [`darwin`, `0`],
-  [`linux`, `1`],
-  [`win32`, `0`],
-]);
-process.env.EDGE_USE_CORECLR =
-  useCoreCLRPlatformMap.get(process.platform) ?? `0`;
-
 export type PayloadType = {
   arg: string;
   buf: Buffer;
