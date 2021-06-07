@@ -63,7 +63,7 @@ const main = async () => {
   }
 
   const endTime = Date.now();
-  console.log(`100 calls to "hello-world" took ${endTime - startTime}ms`);
+  console.log(`100000 calls to "hello-world" took ${endTime - startTime}ms`);
 };
 
 (async () => {

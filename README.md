@@ -26,7 +26,7 @@ res0Sync: {"status":"success","bufStr":"foobar"}
 res2 caught error: Error: Unknown argument `reeeeeee`
 res2Sync caught error: Error: Unknown argument `reeeeeee`
 Launching 100000 calls to "echo"
-100 calls to "hello-world" took 1676ms
+100000 calls to "hello-world" took 1676ms
 ```
 
 Obviously, the last line differs based on your system.
