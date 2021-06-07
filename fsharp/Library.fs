@@ -1,12 +1,20 @@
 ﻿namespace global
 
 open System.Threading.Tasks
+open Newtonsoft.Json
+
+type VersionObject = { version: string }
 
 type Startup() =
     let processRun (arg: string) (buf: byte []) =
         match arg with
         | "hello-world" -> Ok(System.Text.Encoding.ASCII.GetBytes "Hello World")
         | "echo" -> Ok buf
+        | "get-version-field-from-json" ->
+            let verObj =
+                JsonConvert.DeserializeObject<VersionObject>(System.Text.Encoding.ASCII.GetString buf)
+
+            Ok(System.Text.Encoding.ASCII.GetBytes verObj.version)
         | _ -> Error <| sprintf "Unknown argument `%s`" arg
 
     let run (input: obj) =

@@ -35,35 +35,46 @@ const main = async () => {
   // 1: Echo
   const payload1 = toPayload("echo", Buffer.from("foobar", `utf-8`));
   const res1 = await fsEdge.exec(payload1);
-  console.log(`res0: ${prettyPrintSuccessResult(res1)}`);
+  console.log(`res1: ${prettyPrintSuccessResult(res1)}`);
 
   const res1Sync = fsEdge.execSync(payload1);
-  console.log(`res0Sync: ${prettyPrintSuccessResult(res1Sync)}`);
+  console.log(`res1Sync: ${prettyPrintSuccessResult(res1Sync)}`);
 
-  // 2: Bogus command
-  const payload2 = toPayload("reeeeeee");
+  // 2: Get version field
+  const versionObject = { version: "69" };
+  const payload2 = toPayload(
+    "get-version-field-from-json",
+    Buffer.from(JSON.stringify(versionObject))
+  );
+  const res2 = await fsEdge.exec(payload2);
+  console.log(`res2: ${prettyPrintSuccessResult(res2)}`);
+
+  const res2Sync = fsEdge.execSync(payload2);
+  console.log(`res2Sync: ${prettyPrintSuccessResult(res2Sync)}`);
+
+  // 3: Bogus command
+  const payload3 = toPayload("reeeeeee");
   try {
-    await fsEdge.exec(payload2);
+    await fsEdge.exec(payload3);
   } catch (err) {
-    console.log(`res2 caught error: ${err}`);
+    console.log(`res3 caught error: ${err}`);
   }
-
   try {
-    fsEdge.execSync(payload2);
+    fsEdge.execSync(payload3);
   } catch (err) {
-    console.log(`res2Sync caught error: ${err}`);
+    console.log(`res3Sync caught error: ${err}`);
   }
 
   // Let's try calling echo synchronously 100 times
-  console.log(`Launching 100000 calls to "echo"`)
+  console.log(`Launching 100000 calls to "echo"`);
   const startTime = Date.now();
 
   for (let i = 0; i < 100000; i++) {
-    fsEdge.execSync(payload1)
+    fsEdge.execSync(payload1);
   }
 
   const endTime = Date.now();
-  console.log(`100000 calls to "hello-world" took ${endTime - startTime}ms`);
+  console.log(`100000 calls to "echo" took ${endTime - startTime}ms`);
 };
 
 (async () => {
