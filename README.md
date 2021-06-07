@@ -1,6 +1,6 @@
 # Node-Edge-FSharp
 
-Node process calling FSharp via [edge.js](https://github.com/tjanczuk/edge)
+Node process calling FSharp via [edge.js](https://github.com/agracio/edge-js).
 
 ## Getting Started
 
