@@ -19,10 +19,14 @@ If everything succeeded, you should get the following output:
 > node-edge-fsharp@0.1.0 start C:\Users\lhlee\Documents\experiments\node-edge-fsharp
 > ts-node src/index.ts
 
-res0: {"res":"Hello World","status":"success"}
-res0Sync: {"res":"Hello World","status":"success"}
-res0: {"res":"foobar","status":"success"}
-res0Sync: {"res":"foobar","status":"success"}
+res0: {"status":"success","bufStr":"Hello World"}
+res0Sync: {"status":"success","bufStr":"Hello World"}
+res0: {"status":"success","bufStr":"foobar"}
+res0Sync: {"status":"success","bufStr":"foobar"}
 res2 caught error: Error: Unknown argument `reeeeeee`
 res2Sync caught error: Error: Unknown argument `reeeeeee`
 ```
+
+### Developing
+
+If you make any changes to the FSharp code in [`./fsharp`](./fsharp), run `npm run build` to rebuild the FSharp library before running `npm start`.

@@ -12,7 +12,7 @@ type ResultStatus = {
 };
 
 export type SuccessResult = ResultStatus & {
-  res: string;
+  res: Buffer;
 };
 
 export type ErrorResult = ResultStatus & {

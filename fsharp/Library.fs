@@ -5,8 +5,8 @@ open System.Threading.Tasks
 type Startup() =
     let processRun (arg: string) (buf: byte []) =
         match arg with
-        | "hello-world" -> Ok <| "Hello World"
-        | "echo" -> Ok <| System.Text.Encoding.ASCII.GetString buf
+        | "hello-world" -> Ok(System.Text.Encoding.ASCII.GetBytes "Hello World")
+        | "echo" -> Ok buf
         | _ -> Error <| sprintf "Unknown argument `%s`" arg
 
     let run (input: obj) =
