@@ -6,7 +6,7 @@
   "scripts": {
     "postinstall": "npm run build",
     "build": "cd fsharp && dotnet build --configuration Release && dotnet publish --configuration Release",
-    "start": "cross-env EDGE_USE_CORECLR=1 ts-node src/index.ts",
+    "start": "ts-node src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -25,7 +25,6 @@
   },
   "devDependencies": {
     "@types/node": "^15.12.1",
-    "cross-env": "^7.0.3",
     "ts-node": "^10.0.0"
   }
 }
