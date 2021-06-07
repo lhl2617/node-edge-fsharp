@@ -53,6 +53,17 @@ const main = async () => {
   } catch (err) {
     console.log(`res2Sync caught error: ${err}`);
   }
+
+  // Let's try calling echo synchronously 100 times
+  console.log(`Launching 100000 calls to "echo"`)
+  const startTime = Date.now();
+
+  for (let i = 0; i < 100000; i++) {
+    fsEdge.execSync(payload1)
+  }
+
+  const endTime = Date.now();
+  console.log(`100 calls to "hello-world" took ${endTime - startTime}ms`);
 };
 
 (async () => {
