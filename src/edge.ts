@@ -43,28 +43,16 @@ export class FSharpEdge {
   private edgeFuncAsyncWrapper: edge.Func<PayloadType, Result>;
   private edgeFuncSyncWrapper: edge.Func<PayloadType, Result>;
   constructor(mainDllFullPath: string) {
-    const mainDllBaseName = path.basename(mainDllFullPath);
-    const dllPath = path.join(path.dirname(mainDllFullPath));
-    // we need to load all reference dlls.
-    // This is a HACK. We should actually read the *.deps.json file.
-    // But it works!
-    const refDlls = fs
-      .readdirSync(dllPath)
-      .filter((f) => path.extname(f) === `.dll`)
-      .filter((f) => f !== mainDllBaseName)
-      .map((f) => path.join(dllPath, f));
     this.edgeFuncAsyncWrapper = edge.func({
       assemblyFile: mainDllFullPath,
       typeName: `Startup`,
       methodName: `AsyncFunc`,
-      references: refDlls,
     });
 
     this.edgeFuncSyncWrapper = edge.func({
       assemblyFile: mainDllFullPath,
       typeName: `Startup`,
       methodName: `SyncFunc`,
-      references: refDlls,
     });
   }
 
